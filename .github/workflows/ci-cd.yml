@@ -15,10 +15,21 @@ env:
 
 jobs:
   demo:
+    strategy:
+      matrix:
+        node: [14, 16, 18]
     runs-on: ubuntu-latest
     steps:
       - name: A bash command
         run: echo Hello
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Print out node version
+        run: node --version
 
   hello:
     runs-on: macos-latest
@@ -29,7 +40,7 @@ jobs:
 
   dev-only:
     runs-on: ubuntu:latest
-    if: ${{ env.GITHUB_REF_NAME }} == 'dev'
     steps:
       - name: Run on dev only
         run: echo This is from dev
+        if: env.GITHUB_REF_NAME == 'dev
