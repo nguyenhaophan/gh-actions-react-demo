@@ -37,6 +37,8 @@ jobs:
     steps:
       - name: Hello
         run: echo Welcome to Github Actions
+      - name: Use secret
+        run: echo ${{ secrets.MY_SECRET }}
 
     services:
       postgresql:
@@ -49,7 +51,7 @@ jobs:
           POSTGRES_PASSWORD: "password"
 
   dev-only:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - name: Run on dev only
         run: echo This is from dev
