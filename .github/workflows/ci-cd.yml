@@ -21,7 +21,7 @@ jobs:
         run: echo Hello
 
   hello:
-    runs_on: macos-latest
+    runs-on: macos-latest
     steps:
       - name: Hello
         run: echo Welcome to Github Actions
