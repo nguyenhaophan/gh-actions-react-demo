@@ -9,50 +9,27 @@ on:
   pull_request:
     branches: [master, dev]
 
-env:
-  PROJECT: "Github Actions Demo"
-  COURSE: FT9
-
 jobs:
-  demo:
-    strategy:
-      matrix:
-        node: [14, 16, 18]
+  build:
+    name: Lint, test, build
     runs-on: ubuntu-latest
     steps:
-      - name: A bash command
-        run: echo Hello
-
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '18.x'
 
-      - name: Print out node version
-        run: node --version
+      - name: Checkout source code
+        uses: actions/checkout@v3
 
-  hello:
-    runs-on: ubuntu-latest
-    needs: [demo]
-    steps:
-      - name: Hello
-        run: echo Welcome to Github Actions
-      - name: Use secret
-        run: echo ${{ secrets.MY_SECRET }}
+      - name: Install
+        run: npm install
 
-    services:
-      postgresql:
-        image: postgres:14.2
-        ports:
-          - "5433:5432"
-        env:
-          POSTGRES_USER: "demo"
-          POSTGRES_DB: "demo_db"
-          POSTGRES_PASSWORD: "password"
+      - name: Linting
+        run: npm run lint
 
-  dev-only:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run on dev only
-        run: echo This is from dev
-        if: env.GITHUB_REF_NAME == 'dev'
+      - name: Testing
+        run: npm test
+
+      - name: Building
+        run: npm run build --production
