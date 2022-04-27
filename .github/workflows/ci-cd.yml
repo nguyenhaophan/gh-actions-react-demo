@@ -16,4 +16,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: A bash command
-        run: echo "Hello project: ${{ env.PROJECT }}, course: ${{ env.PROJECT }}"
+        run: echo Hello project: ${{ env.PROJECT }}, course: ${{ env.PROJECT }}
