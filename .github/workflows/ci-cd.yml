@@ -26,3 +26,10 @@ jobs:
     steps:
       - name: Hello
         run: echo Welcome to Github Actions
+
+  dev-only:
+    runs-on: ubuntu:latest
+    if: env.GITHUB_REF_SLUG == 'dev'
+    steps:
+      - name: Run on dev only
+        run: echo This is from dev
