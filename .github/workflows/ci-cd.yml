@@ -2,7 +2,9 @@ name: Demo IC/CD
 
 on:
   push:
-    branches: [master, dev]
+    branches:
+      - master
+      - dev
   
   pull_request:
     branches: [master, dev]
@@ -17,3 +19,9 @@ jobs:
     steps:
       - name: A bash command
         run: echo Hello
+
+  hello:
+    runs_on: macos-latest
+    steps:
+      - name: Hello
+        run: echo Welcome to Github Actions
