@@ -43,4 +43,4 @@ jobs:
     steps:
       - name: Run on dev only
         run: echo This is from dev
-        if: env.GITHUB_REF_NAME == 'dev
+        if: env.GITHUB_REF_NAME == 'dev'
