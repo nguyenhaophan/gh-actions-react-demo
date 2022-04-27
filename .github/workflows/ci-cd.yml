@@ -1,0 +1,19 @@
+name: Demo IC/CD
+
+on:
+  push:
+    branches: [master, dev]
+  
+  pull_request:
+    branches: [master, dev]
+
+env:
+  PROJECT: "Github Actions Demo"
+  COURSE: FT9
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: A bash command
+        run: echo "Hello project: ${{ env.PROJECT }}, course: ${{ env.PROJECT }}"
