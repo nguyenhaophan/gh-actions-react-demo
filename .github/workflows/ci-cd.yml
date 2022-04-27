@@ -22,6 +22,7 @@ jobs:
 
   hello:
     runs-on: macos-latest
+    needs: [demo]
     steps:
       - name: Hello
         run: echo Welcome to Github Actions
