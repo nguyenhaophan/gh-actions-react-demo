@@ -29,7 +29,7 @@ jobs:
 
   dev-only:
     runs-on: ubuntu:latest
-    if: env.GITHUB_REF_SLUG == 'dev'
+    if: ${{ env.GITHUB_REF_NAME }} == 'dev'
     steps:
       - name: Run on dev only
         run: echo This is from dev
